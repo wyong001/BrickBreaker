@@ -68,17 +68,19 @@ window.boot = function (basePath = './', callback = null) {
         bundle.loadScene(launchScene, null, onProgress,
             function (err, scene) {
                 if (!err) {
-                    cc.director.runSceneImmediate(scene);
-                    if (cc.sys.isBrowser) {
-                        // show canvas
-                        var canvas = document.getElementById('GameCanvas');
-                        canvas.style.visibility = '';
-                        var div = document.getElementById('GameDiv');
-                        if (div) {
-                            div.style.backgroundImage = '';
+                    window.platform.initPluginResource(() => {
+                        cc.director.runSceneImmediate(scene);
+                        if (cc.sys.isBrowser) {
+                            // show canvas
+                            var canvas = document.getElementById('GameCanvas');
+                            canvas.style.visibility = '';
+                            var div = document.getElementById('GameDiv');
+                            if (div) {
+                                div.style.backgroundImage = '';
+                            }
+                            console.log('Success to load scene: ' + launchScene);
                         }
-                        console.log('Success to load scene: ' + launchScene);
-                    }
+                    })
                 }
             }
         );
@@ -111,7 +113,7 @@ window.boot = function (basePath = './', callback = null) {
         if (count === bundleRoot.length + 1) {
             cc.assetManager.loadBundle(basePath + 'assets/' + MAIN, function (err) {
                 if (!err) {
-                    console.log('main.js 开始执行window.boot 的回调方法');
+                    console.log('main.c508b.js 开始执行window.boot 的回调方法');
                     callback && callback();
                     cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
                     cc.game.run(option, onStart);
@@ -132,20 +134,20 @@ window.boot = function (basePath = './', callback = null) {
 if (window.jsb) {
     var isRuntime = (typeof loadRuntime === 'function');
     if (isRuntime) {
-        require('src/settings.7a3b7.js');
-        require('src/cocos2d-runtime.js');
+        require(basePath + 'src/settings.35bbb.js');
+        require(basePath + 'src/cocos2d-runtime.js');
         if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
-            require('src/physics.js');
+            require(basePath + 'src/physics.js');
         }
-        require('jsb-adapter/engine/index.js');
+        require(basePath + 'jsb-adapter/engine/index.js');
     }
     else {
-        require('src/settings.7a3b7.js');
-        require('src/cocos2d-jsb.js');
+        require(basePath + 'src/settings.35bbb.js');
+        require(basePath + 'src/cocos2d-jsb.js');
         if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
-            require('src/physics.js');
+            require(basePath + 'src/physics.js');
         }
-        require('jsb-adapter/jsb-engine.js');
+        require(basePath + 'jsb-adapter/jsb-engine.js');
     }
 
     cc.macro.CLEANUP_IMAGE_CACHE = true;
