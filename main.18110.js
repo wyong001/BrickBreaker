@@ -113,7 +113,7 @@ window.boot = function (basePath = './', callback = null) {
         if (count === bundleRoot.length + 1) {
             cc.assetManager.loadBundle(basePath + 'assets/' + MAIN, function (err) {
                 if (!err) {
-                    console.log('main.45226.js 开始执行window.boot 的回调方法');
+                    console.log('main.18110.js 开始执行window.boot 的回调方法');
                     callback && callback();
                     cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
                     cc.game.run(option, onStart);
@@ -134,7 +134,7 @@ window.boot = function (basePath = './', callback = null) {
 if (window.jsb) {
     var isRuntime = (typeof loadRuntime === 'function');
     if (isRuntime) {
-        require(basePath + 'src/settings.04960.js');
+        require(basePath + 'src/settings.c613d.js');
         require(basePath + 'src/cocos2d-runtime.js');
         if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
             require(basePath + 'src/physics.js');
@@ -142,7 +142,7 @@ if (window.jsb) {
         require(basePath + 'jsb-adapter/engine/index.js');
     }
     else {
-        require(basePath + 'src/settings.04960.js');
+        require(basePath + 'src/settings.c613d.js');
         require(basePath + 'src/cocos2d-jsb.js');
         if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
             require(basePath + 'src/physics.js');
